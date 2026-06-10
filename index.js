@@ -15,5 +15,5 @@ app.use(cors());
 app.use("/employee", router);
 
 app.listen(port, ()=>{
-    console.log(`server is running at http:localhost:${port}`)
+    console.log(`Server running on port ${PORT}`)
 })
