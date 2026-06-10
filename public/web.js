@@ -1,4 +1,5 @@
 const form = document.querySelector(".form");
+const URL= "https://employee-dashboard-aaqu.onrender.com"
 const formModal = document.querySelector(".formModal");
 const FirstError = document.querySelector(".FirstError");
 const LastError = document.querySelector(".LastError");
@@ -51,13 +52,14 @@ form.addEventListener("submit", async (e) => {
     const search = document.querySelector(".search").value;
 
     try {
-        const res = await fetch(`http://localhost:3000/employee/filter?search=${search}`)
+        const res = await fetch(`${URL}/employee/filter?search=${search}`)
         const datas = await res.json()
          const post= document.querySelector(".post");
   post.innerHTML= "";
     const employees= datas.employee;
     if(!employees || employees.length === 0){
     post.innerHTML= `<h1>No Employees Found</h1>`
+    return;
     }
   employees.forEach(data =>{
       const initials= data.fullname.split(" ").map(word => word[0]).join("").toUpperCase();
@@ -126,7 +128,7 @@ formModal.addEventListener("submit", async (e) => {
     let res;
 
     if (state.mode === "edit") {
-      res = await fetch(`http://localhost:3000/employee/update/${state.editId}`, {
+      res = await fetch(`${URL}/employee/update/${state.editId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +138,7 @@ formModal.addEventListener("submit", async (e) => {
 
     } 
     else {
-      res = await fetch("http://localhost:3000/employee/post", {
+      res = await fetch(`${URL}/employee/post`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -163,7 +165,7 @@ formModal.addEventListener("submit", async (e) => {
 })
 
 const fetchEmployee = async () => {
-    const res = await fetch('http://localhost:3000/employee');
+    const res = await fetch(`${URL}/employee`);
     const datas = await res.json();
     console.log(datas)
 
@@ -211,7 +213,7 @@ const fetchEmployee = async () => {
 
 async function deleteUser(id) {
   try {
-    await fetch(`http://localhost:3000/employee/delete/${id}`, {
+    await fetch(`${URL}/employee/delete/${id}`, {
       method: "DELETE",
     });
 
