@@ -184,8 +184,8 @@ const fetchEmployee = async () => {
             </div>
               <p>${data.email}</p>
               <p>${data.age}</p>
-             <p>Engineering</p>
              <p>${data.department}</p>
+             <p>${data.position}</p>
             
 
              <div class="action">
